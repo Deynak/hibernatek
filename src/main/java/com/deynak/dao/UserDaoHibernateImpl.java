@@ -17,7 +17,7 @@ public class UserDaoHibernateImpl implements UserDao {
     public void createUsersTable() {
         try (Session session = Util.getConnectionHibernate().openSession();) {
             session.beginTransaction();
-            String hql = "CREATE TABLE IF NOT EXISTS User (id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), lastName VARCHAR(50), age INT)";
+            String hql = "CREATE TABLE IF NOT EXISTS hiber_User (id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), lastName VARCHAR(50), age INT)";
             session.createNativeQuery(hql).executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
@@ -30,7 +30,7 @@ public class UserDaoHibernateImpl implements UserDao {
     public void dropUsersTable() {
         try (Session session = Util.getConnectionHibernate().openSession();) {
             session.beginTransaction();
-            session.createNativeQuery("DROP TABLE IF EXISTS User").executeUpdate();
+            session.createNativeQuery("DROP TABLE IF EXISTS hiber_User").executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
